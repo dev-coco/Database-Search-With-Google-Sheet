@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Database Search Tool</title>
+  <script src="https://unpkg.com/wade@0.3.3/dist/wade.min.js"></script>
+  <script src="https://dev-coco.github.io/js/toastify.min.js"></script>
+  <link rel="stylesheet" href="https://dev-coco.github.io/css/ta_site.css">
+  <style>
+    .middle{margin:50px auto 0;width:70%}textarea{width:97%;height:600px;border-radius:5px;outline:0;resize:none}textarea::-webkit-input-placeholder{font-size:18px}.button{font-size:18px;width:100%;text-align:center;border:2px solid #4d648d;padding:.375rem .75rem;margin-bottom:5px;border-radius:5px;background:#4d648d;color:#fff}.button:hover{border:2px solid #4d648d;background:#d0e1f9;color:#1e1f26}.red{background-color:#dc3545;border-color:#dc3545}.red:hover{background-color:#bb2d3b;color:#fff;border:2px solid #dc3545}input{width:18px;height:18px;vertical-align:middle;margin-bottom:5px}.loading{font-weight:400;line-height:1.5;vertical-align:middle;border:1px solid #0d6efd;padding:.375rem .75rem;font-size:1rem;border-radius:.25rem;color:#fff;background-color:#0d6efd}@keyframes load_cycle{to{transform:rotate(360deg)}}.load_cycle{display:inline-block;width:1rem;height:1rem;border:.25em solid currentColor;border-right-color:transparent;border-radius:50%;animation:.75s linear infinite load_cycle;vertical-align:middle}
+  </style>
+  <script>
+    /**
+     * https://console.cloud.google.com/apis/
+     * Create New Project > APIs & Services >
+     * Credentials > Create credentials > API key
+     **/
+    const apiKey = ''
+    const sheetID = '' // Google sheet ID
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: center;margin-top: 13px;display: none;" id="loading">
+      <button class="loading" type="button" disabled>
+        <span class="load_cycle"  role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
+    </div>
+    <p id="dataStatus" style="text-align: center;"></p>
+    <table cellpadding="1" cellspacing="1" class="middle">
+      <tbody>
+        <tr>
+          <td><textarea type="text" style="float:left;" id="origStr" placeholder="Please enter the content, one line at a time" autofocus></textarea></td>
+          <td style="width:12%;text-align:center;">
+            <input id="toggle" type="checkbox"><span>Index</span><br>
+            <button onclick="updateDatabase()" class="button">Update Database</button>
+            <button onclick="detect()" class="button">Detect</button><br>
+            <button onclick="copy()" class="button">Copy</button><br>
+            <button onclick="clean()" class="button red">Empty</button>
+          </td>
+          <td><textarea type="text" style="float:right;" id="convStr" placeholder="Output result, not editable" readonly></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="Database-Search.js"></script>
+</body>
+</html>
